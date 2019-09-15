@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+    <h2>Sample Screen</h2>
+    <input id="inputText" type="text" >
+    <button id="addButton" type="button" onclick="add_Button();">Add</button>
+    <button id="displayButton" type="button" onclick="display_Button();" >Display</button>
+    <p id="outArray"></p>    
+    <script>
+        var arr = [];
+        
+        function add_Button(){
+            var element = document.getElementById("inputText").value;
+            arr.push(element);
+        }
+
+        function display_Button(){
+            var i;
+            document.getElementById("outArray").innerHTML="";
+            
+            for(i=0;i<arr.length;i++){
+               
+               document.getElementById("outArray").innerHTML +=  "Element "+i+" = "+arr[i]+"<br/>";
+                
+            }
+            
+        }
+    </script>
+</body>
+</html>

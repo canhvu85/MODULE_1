@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body >
+    <table>
+        <tr><td><img id="img_1" src="images\img_1_1.jpg" width="200" height="50" onclick="change(this.id);"></td></tr>
+        <tr><td><img id="img_2" src="images\img_1_2.jpg" width="200" height="50" onclick="change(this.id);"></td></tr>
+        <tr><td><img id="img_3" src="images\img_1_3.jpg" width="200" height="50" onclick="change(this.id);"></td></tr>
+        <tr><td><img id="img_4" src="images\img_1_4.jpg" width="200" height="50" onclick="change(this.id);"></td></tr>
+    </table>
+    <script>
+        window.onload = init();
+        function init(){
+            //var random = Math.floor((Math.random()*3)+1);
+            var i;
+            for(i=1;i<=4;i++){
+               // var ra= Math.floor((Math.random()*3)+1);
+               var x = Math.floor((Math.random() * 3) + 1);
+                document.getElementById("img_"+i).src = "images/img_"+x+"_"+i+".jpg";
+            }
+        }
+        function change(clicked){
+            var i = clicked.substring(clicked.length - 1,clicked.length);
+           
+            var x=Math.floor((Math.random()*3) + 1);
+            document.getElementById(clicked).src = "images/img_"+x+"_"+i+".jpg";
+
+            var j;
+            var count=0;
+            for(j=1;j<=4;j++){
+                var sourceImage = document.getElementById("img_"+j).src;
+                //alert(sourceImage);
+                var tmp = sourceImage.substring(sourceImage.length-7,sourceImage.length-6);
+                //alert(tmp);
+                if(tmp==x){
+                    count+=1;
+                }
+                
+            }
+            if(count == 4){
+                    alert("you win !");
+                }
+        }
+    </script>
+</body>
+</html>

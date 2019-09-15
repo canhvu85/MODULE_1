@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=<device-width>, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+
+<body>
+    <form>
+
+        <textarea id="display"></textarea>
+        <br/>
+        <table>
+            <tr>
+                <td>
+                    <input type="button" id="1" onclick="one_click(this.id);" value="1">
+                </td>
+
+                <td>
+                    <input type="button" id="2" onclick="one_click(this.id);" value="2">
+                </td>
+                <td>
+                    <input type="button" id="3" onclick="one_click(this.id);" value="3">
+                </td>
+                <td>
+                    <button type="button" id="clear" onclick="clear_c();">C</button>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <input type="button" id="4" onclick="one_click(this.id);" value="4">
+                </td>
+                <td>
+                    <input type="button" id="5" onclick="one_click(this.id);" value="5">
+                </td>
+                <td>
+                    <input type="button" id="6" onclick="one_click(this.id);" value="6">
+                </td>
+                <td>
+                    <input type="button" id="-" onclick="one_click(this.id);" value="-">
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <input type="button" id="7" onclick="one_click(this.id);" value="7">
+                </td>
+                <td>
+                    <input type="button" id="8" onclick="one_click(this.id);" value="8">
+                </td>
+                <td>
+                    <input type="button" id="9" onclick="one_click(this.id);" value="9">
+                </td>
+                <td>
+                    <input type="button" id="+" onclick="one_click(this.id);" value="+">
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <input type="button" id="0" onclick="one_click(this.id);" value="0">
+                </td>
+                <td>
+                    <input type="button" id="*" onclick="one_click(this.id);" value="* ">
+                </td>
+                <td>
+                    <input type="button" id="/" onclick="one_click(this.id);" value="/">
+                </td>
+                <td>
+                    <input type="button" id="res" onclick="result();" value="=">
+                </td>
+            </tr>
+        </table>
+    </form>
+    <script>
+        function one_click(clicked_id) {
+            document.getElementById("display").innerHTML += clicked_id;
+
+        }
+
+        function result() {
+            document.getElementById("display").innerHTML = eval(document.getElementById("display").innerHTML.toString());
+
+        }
+
+        function clear_c() {
+            document.getElementById("display").innerHTML = "";
+        }
+    </script>
+</body>
+
+</html>

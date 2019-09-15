@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+    <input id="inMon" type="text">
+    <button id="calDay" type="button" onclick="calDay();" >Tinh so ngay</button>
+    <p id="outDay"></p>
+    <script>
+        function calDay(){
+            var inMonth = document.getElementById("inMon").value;
+           
+            switch(inMonth){
+                case "1":
+                case "3":
+                case "5":
+                case "7":
+                case "8":
+                case "10":
+                case "12":
+                    document.getElementById("outDay").innerHTML = "Thang co 31 ngay";
+                    break;
+                case "2":
+                    document.getElementById("outDay").innerHTML = "Thang co 28 hoac 29 ngay";
+                    break;
+                case "4":
+                case "6":
+                case "11":
+                    document.getElementById("outDay").innerHTML = "Thang co 30 ngay";
+                    break;    
+
+            }
+        }
+    </script>
+</body>
+</html>

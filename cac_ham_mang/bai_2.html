@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        var numbers = prompt("nhap chuoi so").toString();
+        var arr = [];
+        document.write(numbers+"<br/>");
+        arr[0] = numbers[0];
+        var i;
+        for(i=1;i<numbers.length;i++){
+            if((numbers[i-1]%2===0) && (numbers[i]%2===0)){
+
+               arr.push("-",numbers[i])
+               
+            }else
+                
+               arr.push(numbers[i]);         
+
+        }
+
+        numbers ="";
+        for(i=0;i<arr.length;i++){
+            numbers+=arr[i];
+        }
+
+        document.write(numbers);
+    </script>
+</body>
+</html>

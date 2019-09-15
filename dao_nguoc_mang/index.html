@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+    <h2>Mang</h2>
+    <p id="beforArray"></p>
+    <h2>Mang sau khi dao nguoc</h2>
+    <p id="afterArray"></p>
+    
+    <script>
+
+        var x= [1,3,5,7,9,11,14,8,7];
+
+        document.getElementById("beforArray").innerHTML = x;
+
+        var first = 0 ;
+        var last = x.length-1;
+        while(first<last){
+             var tmp;
+             tmp = x[last];
+             x[last] = x[first];
+             x[first] = tmp;
+             first++;
+             last--;
+        }
+
+        document.getElementById("afterArray").innerHTML = x;
+
+    </script>
+</body>
+</html>

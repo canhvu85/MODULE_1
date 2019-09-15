@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        var phase = ["i","am","your","father"];
+        var mean = ["toi","la","cua ban","cha"];
+        var i;
+        var count = 0;
+        var inputPhase = prompt("Nhap tu can tra cuu");
+
+        for(i=0;i<phase.length;i++){
+
+            if(inputPhase == phase[i]){
+                alert(inputPhase+" co nghia la: " + mean[i]);
+            }else
+                count++;
+
+        }
+
+        if(count === phase.length){
+            alert("Khong tim thay tu nay trong tu dien");
+        }
+
+    </script>
+</body>
+</html>

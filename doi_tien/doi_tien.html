@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+
+<body>
+    <form>
+        <table>
+            <tr>
+                <td>Amount</td>
+                <td>From Currency</td>
+                <td>To Currency</td>
+            </tr>
+
+            <tr>
+                <td>
+                    <input type="text" id="in_value" value="0">
+                </td>
+
+                <td>
+                    <select id="cur_1">
+                        <option value="vnd" selected = "selected">VND</option>
+                        <option value="usd">USD</option>
+                    </select>
+                </td>
+
+                <td>
+                    <select id="cur_2">
+                        <option value="usd" selected = "selected">USD</option>
+                        <option value="vnd">VND</option>
+                    </select>
+                </td>
+
+                <td>
+                    <button type="button" onclick="result_convert();">Convert</button>
+                </td>
+            </tr>
+        </table>
+        <p id="result">Result:</p>
+    </form>
+
+    <script>
+        function result_convert() {
+
+            var inputValue = document.getElementById("in_value").value;
+            var cur_1 = document.getElementById("cur_1").value;
+            //  alert(cur_1);
+            var cur_2 = document.getElementById("cur_2").value;
+            var tmp = inputValue;
+            if ((cur_1 == "vnd") && (cur_2 == "usd")) {
+                tmp = inputValue / 23000;
+            } else if ((cur_1 == "usd") && (cur_2 == "vnd")) {
+                tmp = inputValue * 23000;
+            }
+            document.getElementById("result").innerHTML = "Result: " + tmp;
+        }
+    </script>
+
+</body>
+
+</html>

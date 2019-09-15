@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=<device-width>, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+
+<body>
+
+    <div id="messageDiv"></div>
+
+    <!-- hien thi dau ra bang alert -->
+    <button type="button" onclick="message_alert();">Click me !</button>
+
+    <!-- hien thi dau ra bang document.write -->
+    <button type="button" onclick="message_doc();">Click me !</button>
+
+    <!-- hien thi dau ra bang console.log -->
+    <button type="button" onclick="message_log();">Click me !</button>
+
+    <!-- hien thi dau ra the html -->
+    <button type="button" onclick="message_div();">Click me !</button>
+
+    <script>
+        // alert
+        function message_alert() {
+            alert("Xin chao ! alert");
+        }
+
+        // document.write
+        function message_doc() {
+            document.write("Xin chao ! doc");
+        }
+
+        // console.log
+        function message_log() {
+            console.log(" Xin Chao ! log");
+        }
+
+        //hien thi ra the html
+        function message_div() {
+            document.getElementById("messageDiv").innerHTML = "Xin chao ! html"
+        }
+    </script>
+</body>
+
+</html>

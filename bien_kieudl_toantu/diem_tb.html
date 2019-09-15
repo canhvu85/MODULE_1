@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=<device-width>, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        var inputLy;
+        var inputHoa;
+        var inputSinh;
+
+        inputLy = prompt("Nhap diem Ly");
+        inputHoa = prompt("Nhap diem Hoa");
+        inputSinh = prompt("Nhap diem Sinh");
+
+        var ly = parseFloat(inputLy);
+        var hoa = parseFloat(inputHoa);
+        var sinh = parseFloat(inputSinh);
+
+        var dtb = (ly + hoa + sinh) / 3;
+        var tong = ly + hoa + sinh;
+        document.write(" Diem trung binh la: " + dtb);
+        document.write("<br/>");
+        document.write("Tong diem la: " + tong);
+    </script>
+</body>
+
+</html>
