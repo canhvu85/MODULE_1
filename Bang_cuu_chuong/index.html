@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        var sOut;
+        sOut = "<table border='1' width = '800' cellspacing = '0' cellpadding = '5'>";
+        var i;
+        var j;
+        for(i=1;i<=9;i++){
+            sOut += "<tr>";
+            for(j=2;j<=9;j++){
+            sOut = sOut + "<td>"+j+"*"+i+"="+j*i + "</td>" ;
+            }
+            sOut += "</tr>";
+        }
+        sOut+= "</tanble>";
+        document.write(sOut);
+    </script>
+</body>
+</html>
