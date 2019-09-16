@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+    <h3>Type anything slowly !</h3>
+    <textarea id="inputText" onkeyup="textChange();"></textarea>
+    <script>
+        var str = "TOI LA MOT DUA NGOC !!!";
+        var text = "";
+        var count =0;
+        function textChange(){
+
+            text+=str[count];
+
+            document.getElementById("inputText").value = "";
+            document.getElementById("inputText").value = text;
+          
+            count++;
+
+            if (count > str.length){
+
+                document.getElementById("inputText").value = "";
+                count = 0;
+                text ="";
+                
+            }
+          
+        }
+        
+    </script>
+</body>
+</html>
