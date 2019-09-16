@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+
+        var count=1;
+        var total=0;
+        var i = 0;
+       
+
+        while(count<=30){
+       
+            while(i%7!=0){
+                i++;
+            }         
+            total+=i;
+            i++;
+            count++;
+        }
+        
+        document.write("Tong la 30 so dau tien chia het cho 7 la: " + total);
+
+    </script>
+</body>
+</html>

@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        var count=1;
+        var arr = [];
+       
+        arr[0] = 0;
+        arr[1] = 1;
+
+        do {
+            count++;
+            arr[count] = arr[count-1] + arr[count-2];
+           
+        }while(arr[count]%5 != 0);
+
+        document.write("So dau tien trong day Fibonaccy chia het cho 5 la: ");
+        document.write(arr[count]);
+
+    </script>
+</body>
+</html>

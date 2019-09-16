@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+    <button id="playButton" onclick="gamePlay();">Choi</button>
+    <script>
+
+        function gamePlay(){
+
+            var about = parseInt(prompt("Nhap vao khoang ban muon doan"));
+            var random_ = Math.round(Math.random()*about);
+            var guess = parseInt(prompt("Nhap vao so ban muon doan"));
+
+            while(guess!=random_){
+                
+                if(guess>random_){
+                    alert("so ban doan lon hon so do");
+                }else
+                    alert("so ban doan nho hon so do");
+
+                guess = parseInt(prompt("Nhap lai so ban muon doan"));
+
+            }
+
+            if(guess===random_){
+                alert("Chuc mung ban da doan dung");
+            }
+            
+        }
+
+    </script>
+</body>
+</html>

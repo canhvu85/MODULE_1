@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        
+        var count=2;
+        var arr = [];
+        var total=0;
+        
+        arr[0] = 0;
+        arr[1] = 1;
+
+        total = total + arr[0] + arr[1];
+
+        while(count<20){
+
+           arr[count] = arr[count-1] + arr[count-2];
+           total+=arr[count];
+           count++;
+
+        }
+        
+        document.write(arr+"<br/>");
+        document.write("Tong la: " + total);
+
+    </script>
+</body>
+</html>
