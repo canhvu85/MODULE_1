@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+
+    <input id="inputValue" >
+    <select id="select_1">
+        <option id = "feet_1" value="feet" selected>Feet</option>
+        <option id = "meter_1" value="meter">Meter</option>
+    </select>
+
+    <select id="select_2">
+        <option id="feet_2" value="feet">Feet</option>
+        <option id="meter_2" value="meter" selected>Meter</option>
+    </select>
+
+    <button id="convertButton" onclick="convertValue();">Convert</button>
+    <br/>
+    <p id = "outputValue"></p>
+
+    <script>
+
+
+        function convertValue(){
+            var select_1 = document.getElementById("select_1");
+            var select_2 = document.getElementById("select_2");
+            var inputValue = parseFloat(document.getElementById("inputValue").value);
+
+            if(select_1.value == "feet" && select_2.value == "meter"){
+
+               document.getElementById("outputValue").innerHTML = footToMeter(inputValue);
+
+            }else 
+            if(select_1.value == "meter" && select_2.value == "feet"){
+
+                document.getElementById("outputValue").innerHTML = meterToFoot(inputValue);
+
+            }else
+
+            document.getElementById("outputValue").innerHTML = inputValue;
+
+        }
+       
+
+        function footToMeter(f){
+            return 0.305*f;
+        }
+
+        function meterToFoot(m){
+            return 3.279*m;
+        }
+
+    </script>
+</body>
+</html>
