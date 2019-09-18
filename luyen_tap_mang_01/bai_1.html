@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        var arrInt = [2,30,5,33,23,10,5,8,6,8];
+        var total = 0;
+        var outputString = "";
+
+        for(var i = 0; i<10; i++){
+            if(checkTenAndOver(arrInt[i])){
+                total+=arrInt[i];
+                outputString += arrInt[i]+" , ";
+            }
+        }
+
+        document.write(outputString + "<br/>");
+        document.write("tong cac so lon hon 10 la: " + total);
+
+        function checkTenAndOver(n){
+            if(n>=10){
+                return true;
+            }else 
+                return false;
+        }
+    </script>
+</body>
+</html>

@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+        <script>
+                var arrInt = [1,2,3,4,7,6,8,21,5];
+                var v=7;
+                var temp;
+                document.write(arrInt + "<br/>");
+                document.write("V= "+ v + "<br/>");
+
+                for(var i=0; i<arrInt.length; i++){
+                    if(arrInt[i] == v){
+                        deleteElement(i);
+                    }
+                }
+
+                document.write(arrInt + "<br/>");
+
+                function deleteElement(pos){
+
+                    for(var j = pos; j<arrInt.length-1; j++){
+                        arrInt[j]=arrInt[j+1];
+                    }
+                    arrInt[j]=0;
+                }
+
+        </script>
+</body>
+</html>
