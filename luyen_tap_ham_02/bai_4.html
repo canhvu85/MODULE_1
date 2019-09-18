@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+
+        var inputNumber = prompt("Nhap vao mot so");
+        
+        function checkIsNumber(){
+
+            var flag = true;
+            var str = "0123456789";
+
+            for(var i = 0; i<inputNumber.length; i++){
+                if(str.indexOf(inputNumber[i]) == -1){
+                    flag = false;
+                    break;
+                }
+            }
+
+            if(flag){
+                return true;
+            }else 
+                return false;
+
+        }
+
+        if(checkIsNumber()){
+            document.write(inputNumber + " la so");
+        }else   
+            document.write(inputNumber + " khong phai la so");
+            
+
+    </script>
+</body>
+</html>
