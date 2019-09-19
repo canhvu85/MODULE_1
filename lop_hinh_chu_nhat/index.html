@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+    <canvas id= "myCanvas" width="1200" height="700" style="border:1px solid brown"></canvas>
+
+    <script>
+
+        var color = "rgb(200,50,70)";
+        var ctx = document.getElementById("myCanvas").getContext("2d");
+
+        var Rectangle =  function(width,height,color){
+
+            this.width = width;
+            this.height = height;
+            this.color = color;
+
+            this.setWidth = function(width){
+                this.width = width;
+            }
+            this.setHeight = function(height){
+                this.height = height;
+            }
+
+            this.area = function(){
+                return this.width*this.height;
+            }
+            this.perimeter = function(){
+                return (this.width+this.height)*2;
+            }
+
+            this.draw = function(context){
+                context.beginPath();
+                context.rect(500,500,this.width,this.height);
+                context.fillStyle = this.color;
+                context.fill();
+                
+            }
+
+        }
+
+        var myRectangle = new Rectangle(100,50,color);
+        myRectangle.draw(ctx);
+        
+        myRectangle.setWidth(20);
+        myRectangle.setHeight(10);
+
+        ctx.beginPath();
+        ctx.fillStyle = color;
+        ctx.font = "30px Arial";
+        ctx.fillText("Area: " + myRectangle.area(),50,50);
+        ctx.fillText("Perimeter: " + myRectangle.perimeter(),50,90);
+
+    </script>
+</body>
+</html>
