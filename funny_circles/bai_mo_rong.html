@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+        <canvas id="myCanvas" width="1200" height="700" style="border: 1px solid #d3d3d3;"></canvas>
+
+        <script>
+
+            var ctx = document.getElementById("myCanvas").getContext("2d");
+
+            var Circle = function(x,y,radius){
+                this.x = x;
+                this.y = y;
+                this.radius = radius;
+            }
+
+            
+
+            var circle = new Circle(500,500,40);
+            var x=circle.x;
+            var y=circle.y;
+            var stepX = 1;
+            var stepY = 1;
+           // displayX = window.innerWidth;
+            displayY = window.innerHeight;
+            displayX = 1200;
+            displayY = 700;
+            
+
+            function createCircle(){
+                
+                ctx.clearRect(0,0,1200,700)
+                //var randomRadius = Math.floor(Math.random()*80);
+                //var randomX = Math.floor(Math.random()*(1200-2*randomRadius)) + randomRadius;
+                //var randomY = Math.floor(Math.random()*(700-2*randomRadius)) + randomRadius;
+                //var randomX = Math.random()*window.innerWidth;
+                //var randomY = Math.random()*window.innerHeight;
+               
+                var color = "rgb(200,50,70)";
+                
+                ctx.beginPath();
+                ctx.arc(x,y,circle.radius,0,2*Math.PI);
+                circle.x = x;
+                circle.y = y;
+                ctx.fillStyle = color;
+                ctx.fill();
+
+                if( x<circle.radius || x>1200-circle.radius) stepX=-stepX; 
+                if( y<circle.radius || y>700-circle.radius) stepY=-stepY; 
+                x+=stepX;
+                y+=stepY;
+                
+            }
+    
+            function getRandomHex(){
+                return Math.floor(Math.random()*255);
+            }
+    
+            function getRandomColor(){
+                var red = getRandomHex();
+                var green = getRandomHex();
+                var blue = getRandomHex();
+                return "rgb("+red+","+green+","+blue+")" ;
+            }
+    
+           
+
+            setInterval(createCircle,0.5);
+            //createCircle();
+
+           
+            
+    
+        </script>
+</body>
+</html>
