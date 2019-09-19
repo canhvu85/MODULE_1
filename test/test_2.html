@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+        <script>
+
+                function inputData(){
+        
+                    var n = +prompt("nhap n");
+        
+                    while(n<10){
+                        n = +prompt("nhap lai n");
+                    }
+                    return n;
+                }
+        
+                function createArray(array,n,m){
+                    
+                    for(var i = 0; i<n; i++){
+
+                        array[i] = [];
+
+                        for(var j=0; j<m; j++){
+                            array[i][j] = Math.floor(Math.random()*100+1);
+                        }
+        
+                    }
+                }
+        
+                function isPrime(number){
+        
+                    for(var i =2; i<number; i++){
+                        if (number%i == 0)
+                        return false;
+                    }
+        
+                    return true;
+        
+                }
+        
+                function countPrime(array,n,m){
+        
+                    var count=0;
+        
+                    for(var i = 0; i< n; i++){
+
+                        for(var j = 0; j<m; j++ ){
+                            if(isPrime(array[i][j]))
+                            count++;
+                        }
+
+                    }
+        
+                    return count;
+        
+                }
+        
+                function showArray(array,n,m){
+
+                     for(var i = 0; i< n; i++){
+
+                        for(var j = 0; j<m; j++ ){
+                            document.write(array[i][j]+" , ");
+                        }
+                        document.write("<br/>");
+                    }
+                }
+
+                function main(){
+
+                    var n = inputData();
+                    var m = inputData();
+                    var arr = [];
+                    createArray(arr,n,m);
+                    showArray(arr,n,m);
+                    document.write("so luong snt la: " + countPrime(arr,n,m));
+                    
+                }
+                
+                main();
+        
+            </script>
+</body>
+</html>
