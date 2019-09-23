@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        var Mobile = function(battery,isOn){
+
+            var i = 0;
+            var j = 0;
+
+            this.battery = battery;
+            this.isOn = isOn;
+            this.message = "";
+            this.inbox = [];
+            this.sent = [];
+
+            this.checkOnOff = function(){
+                if(this.isOn){
+                    return true;
+                }else
+                    return false;
+            }
+
+            this.onOff = function(){
+                if(this.isOn){
+                    return false;
+                }else
+                    return true;
+            }
+
+            this.chargeBattery = function(){
+                this.battery = 100;
+            }
+
+            this.typeMessage = function(message){
+                if(this.isOn){
+                    this.message = message;
+                    this.battery --;
+                }
+            }
+
+            this.receiveMessage = function(message){
+                if(this.isOn){
+                    this.inbox[i] = message;
+                    i++;
+                    this.battery --;
+                }
+            }
+
+            this.sendMessage = function(){
+                if(this.isOn){
+                    this.sent[j] = this.message;
+                    j++;
+                    this.battery --;
+                    return this.message; 
+                }
+            }
+
+            this.readInbox = function(){
+                if(this.isOn){
+                    this.battery --;
+                    return this.inbox;
+                }
+            }
+
+            this.readSent = function(){
+                if(this.isOn){
+                    this.battery --;
+                    return this.sent;
+                }
+            }
+
+
+        }
+
+        var nokia = new Mobile(100,true);
+        var iphone = new Mobile(80,true);
+
+        if(nokia.checkOnOff() && iphone.checkOnOff()){
+
+            nokia.typeMessage("chim se goi dai bang !");
+            nokia.sendMessage();
+            iphone.receiveMessage(nokia.sendMessage());
+
+        }
+
+        document.write(iphone.readInbox());
+        
+
+    </script>
+</body>
+</html>
