@@ -1,0 +1,188 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+
+    <table id="human">
+        <thead>
+            <td>Adam</td>
+            <td>Eva</td>
+            <td>Chat</td>
+        </thead>
+        <tbody>
+            <td><textarea id="adam_info" style="height: 200px"></textarea></td>
+            <td><textarea id="eva_info"style="height: 200px"></textarea></td>
+            <td><textarea  id="chat" style="height: 200px"></textarea></td>
+        </tbody>
+        <tfoot>
+            <td>
+                <button id="adam_eat" type="button" onclick="adamEat();">Eat</button>
+                <button id="adam_say" type="button" onclick="adamSay();">Say</button>
+            </td>
+
+            <td>
+                <button id="eva_eat" type="button" onclick="evaEat();">Eat</button>
+                <button id="eva_say" type="button" onclick="evaSay();">Say</button>
+            </td>
+        </tfoot>
+    </table>
+
+    <table id="apple">
+        <thead>
+            <td>Apple</td>
+        </thead>
+        <tbody>
+            
+            <td><textarea id="apple_info" style="height: 50px"></textarea></td>
+
+        </tbody>
+    </table>
+    
+    <script>
+
+        var Apple = function(){
+
+            this.weight = 10;
+
+            this.getWeight = function(){
+                return this.weight;
+            }
+
+            this.isEmpty = function(){
+                if(this.weight == 0){
+                    return true;
+                }
+                else
+                    return false;
+            }
+
+            this.decrease = function(){
+                this.weight--;
+            }
+
+        }
+
+        var Human = function(name,gender,weight){
+
+            this.name = name;
+            this.gender = gender;
+            this.weight = weight;
+
+            this.isMale = function(){
+                return this.gender;
+            }
+
+            this.setGender = function(gender){
+                this.gender = gender;
+            }
+
+            this.checkApple = function(apple){
+
+                if(apple.isEmpty()){
+                    return false;
+                }
+                else    
+                    return true;
+            }
+
+            this.eat = function(apple){
+
+                apple.decrease();
+                this.weight++;
+
+            }
+
+            this.say = function(string){
+                return string;
+            }
+
+            this.setName = function(name){
+                this.name = name;
+            }
+
+            this.getName = function(){
+                return this.name;
+            }
+
+            this.setWeight = function(weight){
+                this.weight = weight;
+            }
+
+            this.getWeight = function(){
+                return this.weight;
+            }
+
+        }
+
+
+        function showInfoHuman(human){
+
+            document.getElementById(human.getName()+"_info").value = "";
+
+            if(human.isMale()){
+                document.getElementById(human.getName()+"_info").value += "Gender: Man" + "\n";
+            }else
+                document.getElementById(human.getName()+"_info").value += "Gender: Woman" + "\n";
+
+            document.getElementById(human.getName()+"_info").value += "Weight: " + human.getWeight() + "\n";
+
+        }
+
+        function showInfoApple(apple){
+
+            document.getElementById("apple_info").value = "";
+            document.getElementById("apple_info").value += apple.getWeight();
+
+        }
+
+        function adamEat(){
+
+            if(adam.checkApple(apple)){
+                adam.eat(apple);
+                showInfoHuman(adam);
+                showInfoApple(apple);
+            }else
+                alert("het tao roi !");
+
+        }
+
+        function adamSay(){
+
+            var str = prompt("adam:");
+            document.getElementById("chat").value += "adam: " + str + "\n";
+
+        }
+
+        function evaEat(){
+
+            if(eva.checkApple(apple)){
+                eva.eat(apple);
+                showInfoHuman(eva);
+                showInfoApple(apple);
+            }else
+                alert("het tao roi");
+
+        }
+
+        function evaSay(){
+
+            var str = prompt("eva:");
+            document.getElementById("chat").value += "eva: " + str + "\n";
+            
+        }
+        
+        var adam = new Human("adam",true,53);
+        var eva = new Human("eva",false,50);
+        var apple = new Apple();
+        showInfoHuman(adam);
+        showInfoHuman(eva);
+        showInfoApple(apple);                
+
+    </script>
+</body>
+</html>
