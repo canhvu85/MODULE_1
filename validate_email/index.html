@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        
+        function isValidateEmail(email){
+            var regexp = /^[A-Za-z0-9]+[A-Za-z0-9]*@[A-Za-z0-9]+(\.[A-Za-z0-9]+)$/;
+            if(regexp.test(email)){
+                return true;
+            }
+            return false;
+        }
+
+        var email = "-canhvu85@gmail.com";
+
+        if(isValidateEmail(email)){
+            document.write(email + " is a email address");
+        }else   
+            document.write(email + " is NOT a email address");
+
+    </script>
+</body>
+</html>
