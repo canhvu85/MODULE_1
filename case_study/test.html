@@ -1,0 +1,407 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <style>
+        #myCanvas{
+            position: relative;
+            display: inline-block;
+            left: 50%;
+            margin-left: -300px;
+            z-index: 1;
+        }
+
+        #level{
+            position: absolute ;
+            float: left;
+            margin-left: 200px;
+            margin-top: 200px;
+            font-size: 30pt;
+            
+        }
+        #level p{
+            margin-left: 20px;
+            color : royalblue;
+            font-weight: bold;
+            font-size: 30pt;
+            text-align: center;
+        }
+
+        #score{
+            position: relative ; 
+            margin-top: 200px;
+            margin-right: 200px;
+            float: right;
+            font-size: 30pt;
+        }
+
+        #score p{
+            margin-left: 20px;
+            color : royalblue;
+            font-weight: bold;
+            font-size: 30pt;
+            text-align: center;
+        }
+
+        #myForm{
+            position: fixed;
+            left: 50%;
+            top:50%;
+            margin-left: -200px;
+            margin-top: -100px;
+            background-color: #b3cf11;
+            width: 400px;
+            height: 200px;
+            z-index: 2;
+        }
+
+        #myForm #loseLabel{
+            color:red;
+            display: block;
+            position: relative;
+            width: 200px;
+            margin-left: -100px;
+            left: 50%;
+            top: 30%;
+            text-align: center;
+            font-size: 18pt;
+            font-weight: bold;
+            height: 50px;;
+        }
+
+        #myForm #playButton {
+            position: relative;
+            display: block;
+            width: 150px;
+            height: 50px;
+            background-color: royalblue;
+            top: 40%;
+            left: 50%;
+            margin-left: -75px;
+            font-weight: bold;
+            font-size: 16pt;
+        }
+
+    </style>
+</head>
+<body>
+
+        <label id="level">Level<p id="level_display">1</p></label>
+       
+        <form class="form" id="myForm">
+            
+            <label id="loseLabel">Let's Go !</label>
+            <button id="playButton" type="button" onclick="closeFormLose();">Play</button>
+
+        </form>
+
+        <canvas id="myCanvas" width="600" height="700" style=" border: 5px solid #b3cf11;"></canvas>
+
+        <label id="score">Score<p id="score_display">0</p></label>
+
+
+
+        <script>
+
+           //Circle class
+            var Circle = function(x,y,radius,color){
+
+                this.x = x;
+                this.y = y;
+                this.radius = radius;
+                this.color = color;
+              
+            }
+
+           
+            //Rectangle class
+            var Rectangle =  function(x,y,width,height,color){
+
+                this.width = width;
+                this.height = height;
+                this.color = color;
+                this.x = x;
+                this.y = y;
+
+            }
+
+            function drawBall(circle){
+                    
+                ctx.beginPath();
+                ctx.arc(circle.x,circle.y,circle.radius,0,2*Math.PI);
+                ctx.fillStyle = circle.color;
+                ctx.fill();
+                   
+            }
+
+            function drawRectangle(rectangle){
+
+                ctx.beginPath();
+                ctx.rect(rectangle.x,rectangle.y,rectangle.width,rectangle.height);
+                ctx.fillStyle = rectangle.color;
+                ctx.fill();
+
+            }    
+
+            function moveRectangle(evt){
+
+                
+                    switch(evt.keyCode){
+                        case 37 : 
+                            if(myRectangle.x>0){
+                                myRectangle.x -= 50;
+                            }
+                            break;
+
+                        case 39 : 
+                            if(myRectangle.x+myRectangle.width<600){
+                                myRectangle.x += 50;
+                            }
+                            break;
+                    }
+                    
+
+            }    
+
+            function drawBricks(){
+
+                for(var i = 20; i <600; i+=100){
+                
+                    for(var j = 20; j<250; j+=50){
+
+                        drawRectangle(enemy[i][j]);
+
+                    }
+                }
+    
+            }
+            
+
+            function drawGame(){
+
+                    //ctx.clearRect(x-radius-stepX-1,y-radius-stepY-1,2*radius+Math.abs(stepX),2*radius+Math.abs(stepY));
+                    //ctx.clearRect(x-radius,y-radius,2*Math.PI,2*Math.PI);              
+                    ctx.clearRect(0,0,600,700);
+
+                    drawBall(myCircle);
+
+                    if( myCircle.x<myCircle.radius || myCircle.x>600-myCircle.radius) stepX=-stepX; 
+                    if( myCircle.y<myCircle.radius || myCircle.y>700-myCircle.radius) stepY=-stepY; 
+                                       
+                    myCircle.x+=stepX;
+                    myCircle.y+=stepY;
+
+                                       
+                    drawRectangle(myRectangle);
+
+                    drawBricks();
+                    
+                    collision();
+                    
+                    collisionBrick();
+
+                    if(checkLose()){
+                        clearInterval(timer);
+                        openFormLose();
+                    }
+                    
+
+            }
+
+            function collision(){
+
+                if(myCircle.x + myCircle.radius > myRectangle.x 
+                    && myCircle.x - myCircle.radius < myRectangle.x+myRectangle.width 
+                    && myCircle.y + myCircle.radius > myRectangle.y
+                    && myCircle.y + myCircle.radius < myRectangle.y+myRectangle.height){
+                  
+                       stepY =- stepY;
+                   
+                }
+
+                if(myCircle.x + myCircle.radius > myRectangle.x 
+                    && myCircle.x - myCircle.radius < myRectangle.x+myRectangle.width 
+                    && myCircle.y > myRectangle.y
+                    && myCircle.y + myCircle.radius < myRectangle.y+myRectangle.height){
+                  
+                       stepX =- stepX;
+                   
+                }
+                
+            }
+
+           
+            function collisionBrick(){
+
+                var i = 20;
+                var j = 20;
+                var flag = false;
+                
+                while(i<600 && !flag){
+
+                    while(j<250 && !flag){
+
+                        if(myCircle.x + myCircle.radius+5 >= enemy[i][j].x 
+                            && myCircle.x-5 <= enemy[i][j].x+enemy[i][j].width 
+                            && myCircle.y + myCircle.radius < enemy[i][j].y+enemy[i][j].height
+                            && myCircle.y + myCircle.radius > enemy[i][j].y
+                            && enemy[i][j]!=""){
+                               
+                                    enemy[i][j]="";
+                                    flag = true;
+                                    score++;
+                                    
+                                    if(score % 10 == 0){
+
+                                        if(stepX>0)
+                                            stepX += 0.2;
+                                        else
+                                            stepX -= 0.2;    
+
+                                        if(stepY>0)
+                                            stepY += 0.2;
+                                        else
+                                            stepY -= 0.2;       
+                                        
+                                    }
+                                    stepY =- stepY;
+                    
+                                    document.getElementById("score_display").innerHTML = score;
+                                
+                        }
+                    
+                        j+=50;
+
+                    }
+                    j = 20;
+                    i+=100;
+                }
+
+                if(checkWin()){
+                    clearInterval(timer);
+                    openFormWin();    
+                    document.getElementById("playButton").onclick = closeFormWin;        
+                    
+                }
+            }
+
+            function checkLose(){
+
+                if(myCircle.y+myCircle.radius>700){
+                    return true;
+                }
+                return false;
+            }
+
+            function checkWin(){
+
+                for(var i = 20; i <600; i+=100){
+                
+                    for(var j = 20; j<250; j+=50){
+
+                        if(enemy[i][j]!=""){
+                            return false;
+                        }
+
+                    }
+                }
+
+                return true;
+            }
+
+
+            function closeFormLose(){
+                
+                document.getElementById("myForm").style.display = "none";
+                levelY = 650;
+                myCircle = new Circle(250,600,10,colorCircle);
+                myRectangle = new Rectangle(225,levelY,150,20,colorRectangle);
+                stepX = 1.5;
+                stepY = 1.5;
+                level = 1;
+                score = 0;
+                document.getElementById("level_display").innerHTML = level;
+                document.getElementById("score_display").innerHTML = score;
+                init(); 
+                    
+            }
+
+            function closeFormWin(){
+                
+                document.getElementById("myForm").style.display = "none"; 
+                stepX = 1.5;
+                stepY = 1.5;
+                levelY-=20;
+                myCircle = new Circle(250,levelY-20,10,colorCircle);
+                myRectangle = new Rectangle(225,levelY,150,20,colorRectangle);
+                level++;
+                document.getElementById("level_display").innerHTML = level;
+                init();
+
+            }
+
+            function openFormLose(){
+
+                document.getElementById("playButton").onclick = closeFormLose; 
+                document.getElementById("myForm").style.display = "block"; 
+                document.getElementById("loseLabel").innerHTML = "You Lose !";
+                document.getElementById("loseLabel").style.display = "block";
+                
+            }
+
+            function openFormWin(){
+
+                //clearInterval(timer);
+                document.getElementById("myForm").style.display = "block"; 
+                document.getElementById("loseLabel").innerHTML = "Next Level !";
+                document.getElementById("loseLabel").style.display = "block";
+                   
+            }
+
+            var ctx;
+            var colorCircle = "rgb(200,50,70)";
+            var colorRectangle = "rgb(100,30,170)";
+            var colorBrick = "rgb(100,200,70)";
+            var levelY = 650;
+            var myCircle = new Circle(250,600,10,colorCircle);
+            var myRectangle = new Rectangle(225,levelY,150,20,colorRectangle);
+            var stepX = 1.5;
+            var stepY = 1.5;
+            var enemy= [];
+            var timer;
+            var level = 1;
+            var score = 0;
+            var count = 0;
+           
+
+            function createBricks(){
+                
+                for(var i = 20; i <600; i+=100){
+                    enemy[i] = [];
+                    for(var j = 20; j<250; j+=50){
+                    
+                        enemy[i][j] = new Rectangle(i,j,60,20,colorBrick);
+                        
+                    }
+                }
+            }
+
+            function init(){
+
+                window.addEventListener('keydown',moveRectangle,true);
+                window.addEventListener('keyup',moveRectangle,false);
+                ctx = document.getElementById("myCanvas").getContext("2d");
+                createBricks();
+                //timer = setInterval(drawGame,0.001);
+                //timer = requestAnimationFrame(drawGame());
+                //return timer;
+                requestAnimationFrame(drawGame);
+            }
+           
+
+        </script>
+</body>
+</html>
